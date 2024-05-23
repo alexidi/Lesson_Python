@@ -4,7 +4,8 @@
 
 
 lst = [-5, 9, 0, 3, -1, -2, 1, 4, -2, 10, 2, 0, -9, 8, 10, -9, 0, -5, -5, 7]
-
+min_digit = 0
+max_digit = 10
 for i in range(len(lst)):
-    if 0 < = lst[i] <= 10:
+    if min_digit <= lst[i] <= max_digit:
         print(i)
