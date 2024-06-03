@@ -1,3 +1,4 @@
+import csv
 from csv import DictWriter, DictReader
 from os.path import exists
 
@@ -56,6 +57,19 @@ def delete_row(file_name):
         print(f'Строка {search} отсутствует!')
 
 
+def copy_row(file_name, new_file, row_number):
+    with open(file_name, 'r', newline='', encoding='utf-8') as data:
+        reader = csv.reader(data)
+        rows = list(reader)
+        if row_number >= len(rows):
+            print("Строка не существует!")
+        else:
+            row_to_copy = rows[row_number]
+            with open(new_file, 'a', newline='', encoding='utf-8') as outfile:
+                writer = csv.writer(outfile)
+                writer.writerow(row_to_copy)
+
+
 def standard_write(file_name, res):
     with open(file_name, 'w', encoding='utf-8', newline='') as data:
         f_w = DictWriter(data, fieldnames=['first_name', 'second_name', 'phone_numbers'])
@@ -64,6 +78,7 @@ def standard_write(file_name, res):
 
 
 file_name = 'phone.csv'
+new_file = 'phone_1.csv'
 
 
 def main():
@@ -85,6 +100,9 @@ def main():
                 print('Файл не существует, создайте файл!')
                 continue
             delete_row(file_name)
+        elif command == 'c':
+            row_number = int(input('Введите номер строки: '))
+            copy_row(file_name, new_file, row_number)
 
 
 main()
