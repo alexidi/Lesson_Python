@@ -62,7 +62,7 @@ def copy_row(file_name, new_file, row_number):
         reader = csv.reader(data)
         rows = list(reader)
         if row_number >= len(rows):
-            print("Строка не существует!")
+            print(f"Строка {row_number} не существует!")
         else:
             row_to_copy = rows[row_number]
             with open(new_file, 'a', newline='', encoding='utf-8') as outfile:
@@ -101,7 +101,11 @@ def main():
                 continue
             delete_row(file_name)
         elif command == 'c':
-            row_number = int(input('Введите номер строки: '))
+            if not exists(new_file):
+                created_file(new_file)
+                print('Файл создан!')
+                continue
+            row_number = int(input('Введите номер строки для копирования: '))
             copy_row(file_name, new_file, row_number)
 
 
