@@ -1,3 +1,9 @@
+# Задача 44: В ячейке ниже представлен код генерирующий DataFrame,
+# которая состоит всего из 1 столбца.
+# Ваша задача перевести его в one hot вид.
+# Сможете ли вы это сделать без get_dummies?
+
+
 import random
 
 import pandas as pd
@@ -27,5 +33,4 @@ data = pd.DataFrame({'whoAmI': lst})
 new_data = pd.DataFrame()
 new_data['robot'] = [1 if x == 'robot' else 0 for x in data['whoAmI']]
 new_data['human'] = [1 if x == 'human' else 0 for x in data['whoAmI']]
-
 print(new_data)
